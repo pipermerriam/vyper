@@ -58,7 +58,9 @@ def mk_full_signature(code, *args, **kwargs):
         try:
             func_signature = func['name']
         except KeyError:
+            # constructor functions don't have a name
             continue
+
         func_name, _, _ = func_signature.partition('(')
         # This check ensures we skip __init__ since it has no estimate
         if func_name in gas_estimates:
